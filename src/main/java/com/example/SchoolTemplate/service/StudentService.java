@@ -1,7 +1,9 @@
 package com.example.SchoolTemplate.service;
 
 import com.example.SchoolTemplate.dto.StudentInputDto;
+import com.example.SchoolTemplate.dto.StudentMarksDto;
 import com.example.SchoolTemplate.dto.StudentOutputDto;
+import com.example.SchoolTemplate.enums.Grade;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,4 +19,12 @@ public interface StudentService {
     StudentOutputDto updateStudentInfo(Long id, StudentInputDto studentDto);
 
     void deleteStudent(Long id);
+
+    List<StudentOutputDto> getBySchoolId(Long schoolId);
+
+    List<StudentOutputDto> getByGrade(Grade grade);
+
+    List<StudentOutputDto> getByMarks(Long marks);
+
+    List<StudentMarksDto> getByMarksRange(Long lower, Long higher);
 }

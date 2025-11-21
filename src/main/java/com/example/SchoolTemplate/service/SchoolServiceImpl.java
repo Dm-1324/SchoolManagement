@@ -2,6 +2,7 @@ package com.example.SchoolTemplate.service;
 
 import com.example.SchoolTemplate.dto.SchoolDto;
 import com.example.SchoolTemplate.entity.School;
+import com.example.SchoolTemplate.exception.ResourceNotFoundException;
 import com.example.SchoolTemplate.mapper.SchoolMapper;
 import com.example.SchoolTemplate.repository.SchoolRepository;
 import jakarta.transaction.Transactional;
@@ -29,7 +30,7 @@ public class SchoolServiceImpl implements SchoolService {
     @Override
     public SchoolDto getSchoolById(Long schoolId) {
         School school = schoolRepository.findById(schoolId)
-                .orElseThrow(() -> new RuntimeException("School Not Found"));
+                .orElseThrow(() -> new ResourceNotFoundException("School", "id", schoolId));
         return schoolMapper.toDto(school);
     }
 
@@ -42,7 +43,7 @@ public class SchoolServiceImpl implements SchoolService {
     @Override
     public SchoolDto updateSchoolInfo(Long id, SchoolDto schoolDto) {
         School school = schoolRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("School Not Found"));
+                .orElseThrow(() -> new ResourceNotFoundException("School", "id", id));
 
         schoolMapper.updateEntityFromDTO(schoolDto, school);
 
@@ -52,8 +53,7 @@ public class SchoolServiceImpl implements SchoolService {
     @Override
     public void deleteSchool(Long id) {
         School school = schoolRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("School Not Found"));
-
+                .orElseThrow(() -> new ResourceNotFoundException("School", "id", id));
         schoolRepository.delete(school);
 
     }

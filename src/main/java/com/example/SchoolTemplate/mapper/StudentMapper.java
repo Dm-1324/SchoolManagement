@@ -2,6 +2,7 @@ package com.example.SchoolTemplate.mapper;
 
 import com.example.SchoolTemplate.dto.StudentDto;
 import com.example.SchoolTemplate.dto.StudentInputDto;
+import com.example.SchoolTemplate.dto.StudentMarksDto;
 import com.example.SchoolTemplate.dto.StudentOutputDto;
 import com.example.SchoolTemplate.entity.School;
 import com.example.SchoolTemplate.entity.Student;
@@ -52,6 +53,13 @@ public class StudentMapper {
                 .marks(student.getMarks())
                 .grade(GradeCalculator.calculateGrade(student.getMarks()))
                 .schoolData(SchoolMapper.toDataDto(student.getSchool()))
+                .build();
+    }
+
+    public StudentMarksDto toMarksDto(Student student) {
+        return StudentMarksDto.builder()
+                .name(student.getName())
+                .marks(student.getMarks())
                 .build();
     }
 

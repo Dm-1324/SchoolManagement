@@ -1,4 +1,4 @@
-package com.example.SchoolTemplate.dto;
+package com.example.SchoolTemplate.dto.schoolDto;
 
 import lombok.*;
 
@@ -7,8 +7,12 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class SchoolDataDto {
+public class SchoolDto {
+    private Long id;
+
     private String schoolName;
 
     private String location;
+
+    private Integer year;
 }

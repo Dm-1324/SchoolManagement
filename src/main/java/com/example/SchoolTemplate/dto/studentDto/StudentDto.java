@@ -1,4 +1,4 @@
-package com.example.SchoolTemplate.dto;
+package com.example.SchoolTemplate.dto.studentDto;
 
 import com.example.SchoolTemplate.enums.Grade;
 import lombok.*;

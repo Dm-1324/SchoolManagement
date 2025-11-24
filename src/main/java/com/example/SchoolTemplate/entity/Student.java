@@ -7,6 +7,9 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
 @Table(name = "student")
 @Setter
@@ -36,5 +39,10 @@ public class Student {
     @JoinColumn(name = "school_id")
     private School school;
 
+    @ManyToMany
+    @JoinTable(name = "student_sport",
+            joinColumns = @JoinColumn(name = "student_id"),
+            inverseJoinColumns = @JoinColumn(name = "sport_id"))
+    private Set<Sports> sports = new HashSet<>();
 
 }

@@ -21,5 +21,5 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
     @Query("select s from Student s where marks > :lower and marks < :higher")
     List<Student> findMarksInRange(@Param("lower") Long lower, @Param("higher") Long higher);
 
-
+    
 }

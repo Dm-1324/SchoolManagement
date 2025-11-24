@@ -1,9 +1,9 @@
 package com.example.SchoolTemplate.mapper;
 
-import com.example.SchoolTemplate.dto.StudentDto;
-import com.example.SchoolTemplate.dto.StudentInputDto;
-import com.example.SchoolTemplate.dto.StudentMarksDto;
-import com.example.SchoolTemplate.dto.StudentOutputDto;
+import com.example.SchoolTemplate.dto.studentDto.StudentDto;
+import com.example.SchoolTemplate.dto.studentDto.StudentInputDto;
+import com.example.SchoolTemplate.dto.studentDto.StudentMarksDto;
+import com.example.SchoolTemplate.dto.studentDto.StudentOutputDto;
 import com.example.SchoolTemplate.entity.School;
 import com.example.SchoolTemplate.entity.Student;
 import com.example.SchoolTemplate.repository.SchoolRepository;

@@ -1,6 +1,8 @@
 package com.example.SchoolTemplate.service;
 
-import com.example.SchoolTemplate.dto.SchoolDto;
+import com.example.SchoolTemplate.dto.schoolDto.SchoolAverageView;
+import com.example.SchoolTemplate.dto.schoolDto.SchoolDto;
+import com.example.SchoolTemplate.dto.schoolDto.SchoolInputDto;
 import com.example.SchoolTemplate.entity.School;
 import com.example.SchoolTemplate.exception.ResourceNotFoundException;
 import com.example.SchoolTemplate.mapper.SchoolMapper;
@@ -35,13 +37,13 @@ public class SchoolServiceImpl implements SchoolService {
     }
 
     @Override
-    public SchoolDto createSchool(SchoolDto schoolDto) {
+    public SchoolInputDto createSchool(SchoolInputDto schoolDto) {
         School school = schoolMapper.toEntity(schoolDto);
-        return schoolMapper.toDto(schoolRepository.save(school));
+        return schoolMapper.toInputDto(schoolRepository.save(school));
     }
 
     @Override
-    public SchoolDto updateSchoolInfo(Long id, SchoolDto schoolDto) {
+    public SchoolDto updateSchoolInfo(Long id, SchoolInputDto schoolDto) {
         School school = schoolRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("School", "id", id));
 
@@ -56,5 +58,15 @@ public class SchoolServiceImpl implements SchoolService {
                 .orElseThrow(() -> new ResourceNotFoundException("School", "id", id));
         schoolRepository.delete(school);
 
+    }
+
+    @Override
+    public Long countStudentBySchoolId(Long schoolId) {
+        return schoolRepository.countStudentsBySchoolId(schoolId);
+    }
+
+    @Override
+    public List<SchoolAverageView> getAverageBySchool() {
+        return schoolRepository.getAverageMark();
     }
 }

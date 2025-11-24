@@ -1,7 +1,8 @@
 package com.example.SchoolTemplate.mapper;
 
-import com.example.SchoolTemplate.dto.SchoolDataDto;
-import com.example.SchoolTemplate.dto.SchoolDto;
+import com.example.SchoolTemplate.dto.schoolDto.SchoolDataDto;
+import com.example.SchoolTemplate.dto.schoolDto.SchoolDto;
+import com.example.SchoolTemplate.dto.schoolDto.SchoolInputDto;
 import com.example.SchoolTemplate.entity.School;
 import org.springframework.stereotype.Component;
 
@@ -16,9 +17,8 @@ public class SchoolMapper {
                 .build();
     }
 
-    public School toEntity(SchoolDto dto) {
+    public School toEntity(SchoolInputDto dto) {
         return School.builder()
-                .id(dto.getId())
                 .schoolName(dto.getSchoolName())
                 .location(dto.getLocation())
                 .year(dto.getYear())
@@ -34,7 +34,15 @@ public class SchoolMapper {
                 .build();
     }
 
-    public void updateEntityFromDTO(SchoolDto dto, School school) {
+    public SchoolInputDto toInputDto(School school) {
+        return SchoolInputDto.builder()
+                .schoolName(school.getSchoolName())
+                .location(school.getLocation())
+                .year(school.getYear())
+                .build();
+    }
+
+    public void updateEntityFromDTO(SchoolInputDto dto, School school) {
         school.setSchoolName(dto.getSchoolName());
         school.setLocation(dto.getLocation());
         school.setYear(dto.getYear());

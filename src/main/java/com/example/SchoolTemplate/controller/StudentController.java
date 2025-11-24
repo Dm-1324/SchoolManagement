@@ -1,8 +1,8 @@
 package com.example.SchoolTemplate.controller;
 
-import com.example.SchoolTemplate.dto.StudentInputDto;
-import com.example.SchoolTemplate.dto.StudentMarksDto;
-import com.example.SchoolTemplate.dto.StudentOutputDto;
+import com.example.SchoolTemplate.dto.studentDto.StudentInputDto;
+import com.example.SchoolTemplate.dto.studentDto.StudentMarksDto;
+import com.example.SchoolTemplate.dto.studentDto.StudentOutputDto;
 import com.example.SchoolTemplate.enums.Grade;
 import com.example.SchoolTemplate.service.StudentService;
 import lombok.AllArgsConstructor;

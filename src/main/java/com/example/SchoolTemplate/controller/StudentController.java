@@ -6,6 +6,10 @@ import com.example.SchoolTemplate.dto.studentDto.StudentOutputDto;
 import com.example.SchoolTemplate.enums.Grade;
 import com.example.SchoolTemplate.service.StudentService;
 import lombok.AllArgsConstructor;
+import org.springdoc.core.annotations.ParameterObject;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -34,8 +38,13 @@ public class StudentController {
     }
 
     @GetMapping("/school/{schoolId}")
-    public ResponseEntity<List<StudentOutputDto>> getStudentBySchoolId(@PathVariable Long schoolId) {
-        List<StudentOutputDto> studentList = studentService.getBySchoolId(schoolId);
+    public ResponseEntity<Page<StudentOutputDto>> getStudentBySchoolId(
+            @PathVariable Long schoolId,
+            // Uses Pageable to handle ?page, ?size, and ?sort parameters from the URL
+            @ParameterObject
+            @PageableDefault(size = 10, page = 0, sort = "marks", direction = org.springframework.data.domain.Sort.Direction.DESC) Pageable pageable
+    ) {
+        Page<StudentOutputDto> studentList = studentService.getBySchoolId(schoolId, pageable);
 
         return ResponseEntity.ok(studentList);
     }

@@ -1,7 +1,6 @@
-package com.example.SchoolTemplate.dto.studentDto;
+package com.example.SchoolTemplate.dto.sportsDto;
 
 import com.example.SchoolTemplate.dto.schoolDto.SchoolDataDto;
-import com.example.SchoolTemplate.enums.Grade;
 import lombok.*;
 
 import java.util.Set;
@@ -11,12 +10,12 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class StudentOutputDto {
+public class SportsOutputDto {
     private Long id;
     private String name;
-    private Long marks;
-    private Grade grade;
+    private String coachName;
     private SchoolDataDto schoolData;
 
-    private Set<Long> sportIds;
+
+    private Set<Long> studentIds;
 }

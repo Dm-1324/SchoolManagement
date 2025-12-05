@@ -9,14 +9,12 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class SchoolDto {
-    private Long id;
-
+public class SchoolInputDto {
     private String schoolName;
 
     private String location;
 
     private Integer year;
-
     private List<Long> sportIds;
+
 }

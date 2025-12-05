@@ -7,7 +7,9 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -40,9 +42,14 @@ public class Student {
     private School school;
 
     @ManyToMany
-    @JoinTable(name = "student_sport",
+    @JoinTable(name = "student_sports",
             joinColumns = @JoinColumn(name = "student_id"),
-            inverseJoinColumns = @JoinColumn(name = "sport_id"))
+            inverseJoinColumns = @JoinColumn(name = "sports_id"))
     private Set<Sports> sports = new HashSet<>();
 
+    @ManyToMany
+    @JoinTable(name = "student_course",
+            joinColumns = @JoinColumn(name = "student_id"),
+            inverseJoinColumns = @JoinColumn(name = "course_id"))
+    private List<Course> courses = new ArrayList<>();
 }

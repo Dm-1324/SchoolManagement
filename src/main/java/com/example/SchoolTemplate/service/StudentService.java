@@ -4,6 +4,8 @@ import com.example.SchoolTemplate.dto.studentDto.StudentInputDto;
 import com.example.SchoolTemplate.dto.studentDto.StudentMarksDto;
 import com.example.SchoolTemplate.dto.studentDto.StudentOutputDto;
 import com.example.SchoolTemplate.enums.Grade;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,11 +22,15 @@ public interface StudentService {
 
     void deleteStudent(Long id);
 
-    List<StudentOutputDto> getBySchoolId(Long schoolId);
+//    List<StudentOutputDto> getBySchoolId(Long schoolId);
+
+    Page<StudentOutputDto> getBySchoolId(Long schoolId, Pageable pageable);
 
     List<StudentOutputDto> getByGrade(Grade grade);
 
     List<StudentOutputDto> getByMarks(Long marks);
 
     List<StudentMarksDto> getByMarksRange(Long lower, Long higher);
+
+
 }

@@ -38,4 +38,9 @@ public class School {
 
     @OneToMany(mappedBy = "school", cascade = CascadeType.ALL)
     private List<Sports> sports = new ArrayList<>();
+
+    @OneToMany(mappedBy = "school", cascade = CascadeType.ALL)
+    private List<Course> courses = new ArrayList<>();
+
+
 }

@@ -12,6 +12,8 @@ import com.example.SchoolTemplate.repository.SchoolRepository;
 import com.example.SchoolTemplate.repository.StudentRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -68,16 +70,25 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public List<StudentOutputDto> getBySchoolId(Long schoolId) {
+    public Page<StudentOutputDto> getBySchoolId(Long schoolId, Pageable pageable) {
         School school = schoolRepository.findById(schoolId)
                 .orElseThrow(() -> new ResourceNotFoundException("School", "id", schoolId));
+        Page<Student> studentPage = studentRepository.findBySchoolId(schoolId, pageable);
 
-        List<Student> students = studentRepository.findBySchoolId(schoolId);
-
-        return students.stream()
-                .map(studentMapper::toOutputDto)
-                .toList();
+        return studentPage.map(studentMapper::toOutputDto);
     }
+//
+//    @Override
+//    public List<StudentOutputDto> getBySchoolId(Long schoolId) {
+//        School school = schoolRepository.findById(schoolId)
+//                .orElseThrow(() -> new ResourceNotFoundException("School", "id", schoolId));
+//
+//        List<Student> students = studentRepository.findBySchoolId(schoolId);
+//
+//        return students.stream()
+//                .map(studentMapper::toOutputDto)
+//                .toList();
+//    }
 
     @Override
     public List<StudentOutputDto> getByGrade(Grade grade) {

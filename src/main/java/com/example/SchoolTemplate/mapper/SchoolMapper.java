@@ -4,7 +4,10 @@ import com.example.SchoolTemplate.dto.schoolDto.SchoolDataDto;
 import com.example.SchoolTemplate.dto.schoolDto.SchoolDto;
 import com.example.SchoolTemplate.dto.schoolDto.SchoolInputDto;
 import com.example.SchoolTemplate.entity.School;
+import com.example.SchoolTemplate.entity.Sports;
 import org.springframework.stereotype.Component;
+
+import java.util.stream.Collectors;
 
 @Component
 public class SchoolMapper {
@@ -39,6 +42,7 @@ public class SchoolMapper {
                 .schoolName(school.getSchoolName())
                 .location(school.getLocation())
                 .year(school.getYear())
+                .sportIds(school.getSports().stream().map(Sports::getId).collect(Collectors.toList()))
                 .build();
     }
 
